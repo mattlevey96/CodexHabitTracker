@@ -1,0 +1,75 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Habit Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <main class="app">
+    <header class="app-header card">
+      <div>
+        <p class="eyebrow">Daily focus</p>
+        <h1>Habit Tracker</h1>
+        <p class="muted" id="todayLabel"></p>
+      </div>
+      <div class="header-stats">
+        <div class="mini-stat">
+          <span class="mini-label">Completed today</span>
+          <strong id="completedToday">0</strong>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-label">Best streak</span>
+          <strong id="bestStreak">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="card add-section">
+      <h2>Add Habit</h2>
+      <form id="habitForm" class="habit-form">
+        <label>
+          Habit
+          <input type="text" id="habitName" placeholder="Read 20 minutes" maxlength="80" required />
+        </label>
+        <label>
+          Category
+          <input type="text" id="habitCategory" placeholder="Health, Work, Personal" maxlength="40" required />
+        </label>
+        <button type="submit">Add Habit</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Your Habits</h2>
+        <button id="resetToday" class="ghost-btn" type="button">Reset Today</button>
+      </div>
+      <div id="habitsByCategory" class="categories"></div>
+      <p id="emptyState" class="empty">No habits yet. Add one above to get started.</p>
+    </section>
+  </main>
+
+  <template id="habitItemTemplate">
+    <article class="habit-item">
+      <button class="toggle-btn" type="button" aria-label="Toggle habit">
+        <span class="toggle-icon">✓</span>
+      </button>
+      <div class="habit-content">
+        <h3 class="habit-name"></h3>
+        <p class="habit-meta"></p>
+      </div>
+      <button class="delete-btn" type="button" aria-label="Delete habit">Delete</button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
