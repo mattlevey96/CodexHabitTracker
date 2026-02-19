@@ -19,12 +19,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyBf_WMIPOHkfGN14IKMBGdZblbp13iU96A",
+  authDomain: "codexhabittracker.firebaseapp.com",
+  projectId: "codexhabittracker",
+  storageBucket: "codexhabittracker.firebasestorage.app",
+  messagingSenderId: "370716445308",
+  appId: "1:370716445308:web:235ebf09d1cbb7676f57f9",
+  measurementId: "G-03LFHWD02R",
 };
 
 const isFirebaseConfigured = Object.values(firebaseConfig).every(
@@ -386,3 +387,4 @@ function normalizeAuthError(error) {
 }
 
 render();
+
