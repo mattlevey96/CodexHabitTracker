@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Habit Tracker</title>
+  <title>Work Task Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -14,62 +14,101 @@
   <div class="bg-orb orb-2"></div>
 
   <main class="app">
+    <section class="card auth-card">
+      <div class="auth-head">
+        <div>
+          <p class="eyebrow">Account</p>
+          <h2>Sign in for cross-device sync</h2>
+          <p class="muted" id="authStatus">Signed out</p>
+        </div>
+        <button id="signOutBtn" class="ghost-btn" type="button" hidden>Sign out</button>
+      </div>
+      <form id="authForm" class="auth-form">
+        <label>
+          Email
+          <input type="email" id="authEmail" placeholder="you@company.com" required />
+        </label>
+        <label>
+          Password
+          <input type="password" id="authPassword" placeholder="At least 6 characters" minlength="6" required />
+        </label>
+        <button type="submit" data-mode="signin">Sign In</button>
+        <button type="button" class="ghost-btn" id="signUpBtn">Create Account</button>
+      </form>
+      <p id="authMessage" class="muted"></p>
+      <p id="configWarning" class="warning" hidden>
+        Firebase is not configured yet. Add your config in <code>script.js</code> to enable login and cloud sync.
+      </p>
+    </section>
+
     <header class="app-header card">
       <div>
-        <p class="eyebrow">Daily focus</p>
-        <h1>Habit Tracker</h1>
+        <p class="eyebrow">Execution dashboard</p>
+        <h1>Work Task Tracker</h1>
         <p class="muted" id="todayLabel"></p>
       </div>
       <div class="header-stats">
         <div class="mini-stat">
-          <span class="mini-label">Completed today</span>
-          <strong id="completedToday">0</strong>
+          <span class="mini-label">Today</span>
+          <strong id="todayProgress">0/0</strong>
         </div>
         <div class="mini-stat">
-          <span class="mini-label">Best streak</span>
-          <strong id="bestStreak">0</strong>
+          <span class="mini-label">This week</span>
+          <strong id="weekProgress">0/0</strong>
         </div>
       </div>
     </header>
 
-    <section class="card add-section">
-      <h2>Add Habit</h2>
-      <form id="habitForm" class="habit-form">
+    <section class="card add-section" id="taskEntryCard" hidden>
+      <h2>Add Task</h2>
+      <form id="taskForm" class="task-form">
         <label>
-          Habit
-          <input type="text" id="habitName" placeholder="Read 20 minutes" maxlength="80" required />
+          Task
+          <input type="text" id="taskName" placeholder="Draft client update" maxlength="100" required />
         </label>
         <label>
-          Category
-          <input type="text" id="habitCategory" placeholder="Health, Work, Personal" maxlength="40" required />
+          Project
+          <input type="text" id="taskProject" placeholder="Growth Strategy" maxlength="60" required />
         </label>
-        <button type="submit">Add Habit</button>
+        <label>
+          Workstream
+          <input type="text" id="taskWorkstream" placeholder="Market Sizing" maxlength="60" required />
+        </label>
+        <label>
+          Assigned to
+          <input type="text" id="taskAssignee" placeholder="Levey Matt" maxlength="60" required />
+        </label>
+        <label>
+          Due date
+          <input type="date" id="taskDueDate" required />
+        </label>
+        <button type="submit">Add Task</button>
       </form>
     </section>
 
-    <section class="card">
+    <section class="card" id="tasksCard" hidden>
       <div class="section-head">
-        <h2>Your Habits</h2>
-        <button id="resetToday" class="ghost-btn" type="button">Reset Today</button>
+        <h2>Tasks by Project and Workstream</h2>
+        <button id="clearToday" class="ghost-btn" type="button">Clear Today's Completions</button>
       </div>
-      <div id="habitsByCategory" class="categories"></div>
-      <p id="emptyState" class="empty">No habits yet. Add one above to get started.</p>
+      <div id="tasksByProject" class="groups"></div>
+      <p id="emptyState" class="empty">No tasks yet. Add one above to get started.</p>
     </section>
   </main>
 
-  <template id="habitItemTemplate">
-    <article class="habit-item">
-      <button class="toggle-btn" type="button" aria-label="Toggle habit">
+  <template id="taskItemTemplate">
+    <article class="task-item">
+      <button class="toggle-btn" type="button" aria-label="Toggle task complete">
         <span class="toggle-icon">✓</span>
       </button>
-      <div class="habit-content">
-        <h3 class="habit-name"></h3>
-        <p class="habit-meta"></p>
+      <div class="task-content">
+        <h3 class="task-name"></h3>
+        <p class="task-meta"></p>
       </div>
-      <button class="delete-btn" type="button" aria-label="Delete habit">Delete</button>
+      <button class="delete-btn" type="button" aria-label="Delete task">Delete</button>
     </article>
   </template>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
